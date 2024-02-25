@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Text Example</title>
+</head>
+<body>
+    <!-- Link with hover behavior -->
+    <a href="#" onmouseover="changeTitle('New Title')" onmouseout="restoreTitle()">Hover over me</a>
+
+    <script>
+        // JavaScript function to change the title
+        function changeTitle(newTitle) {
+            document.title = newTitle; // Change the title to the specified new title
+        }
+
+        // JavaScript function to restore the original title
+        function restoreTitle() {
+            document.title = "Toggle Text Example"; // Restore the original title
+        }
+
+        // JavaScript function to toggle the text in the <h1> element
+        function toggleText() {
+            var h1Element = document.querySelector('h1'); // Get the <h1> element
+            var originalText = h1Element.dataset.originalText; // Get the original text from dataset
+            var currentText = h1Element.textContent; // Get the current text content
+
+            // Check if the current text matches the original text
+            if (currentText === originalText) {
+                // If the text is original, mute it
+                h1Element.textContent = 'It changed';
+            } else {
+                // If the text is muted, restore it to original
+                h1Element.textContent = originalText;
+            }
+        }
+
+        // Execute on page load
+        window.onload = function() {
+            // Store the original text in the dataset attribute
+            var h1Element = document.querySelector('h1'); // Get the <h1> element
+            h1Element.dataset.originalText = h1Element.textContent; // Store original text in dataset
+        };
+    </script>
+
+    <h1>
+        A testament to the truth and will never be changed.
+    </h1>
+
+    <!-- Button to trigger the toggleText function -->
+    <button onclick="toggleText()">Toggle Text</button>
+</body>
+</html>
