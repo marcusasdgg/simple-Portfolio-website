@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Favicon</title>
+    <!-- Initial favicon -->
+    <link rel="icon" type="image/x-icon" href="/badApple/icoStorage/0.ico" id="favicon">
+</head>
+<body>
+    <h1 style="text-align: center; justify-content: center">Dynamic Favicon Example</h1>
+    <p>This example relys on javascript to automatically change the image icon multiple times to play the world renowned video Bad Apple. <br> 
+    It also includes caching such that the server does not be polled every 10 milliseconds for an icon.</p>
+
+    <script>
+        // List of icon URLs
+        var pathlist = [];
+        var basePath = "/badApple/icoStorage/"
+        for (let i = 0; i < 1000 ; i++)
+        {
+            var icoPath = basePath + i + ".ico"
+            pathlist.push(icoPath);
+            
+            
+        }
+        // Preload icons into memory
+        var icons = [];
+        for (var i = 0; i < pathlist.length; i++) {
+            var img = new Image();
+            img.src = pathlist[i];
+            icons.push(img);
+            console.log("storing path for image " + i);
+        }
+
+        var currentIndex = 0;
+
+        function changeFavicon() {
+            var favicon = document.getElementById('favicon');
+            favicon.href = icons[currentIndex].src;
+            // Move to the next icon
+            currentIndex = (currentIndex + 1) % icons.length;
+        }
+
+        // Example: Change favicon every 100 milliseconds
+        setInterval(changeFavicon, 15); // Change every 100 milliseconds
+    </script>
+
+</body>
+</html>

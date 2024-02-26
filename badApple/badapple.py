@@ -50,6 +50,14 @@ def split_video(path, outputPath, extraPath):
 
 def convert_png_to_ico(input_path, output_path):
     # Open the PNG image
+     # Open the JPEG image
     img = Image.open(input_path)
+    
+    # Convert to RGBA mode (add alpha channel)
+    img = img.convert("RGBA")
+    
+    # Resize to 256x256 (ICO format requirement)
+    img = img.resize((256, 256), Image.LANCZOS)
+    
     # Save as ICO format
-    img.save(output_path, format='ICO', sizes=[(256,256)])
+    img.save(output_path, format='ICO')

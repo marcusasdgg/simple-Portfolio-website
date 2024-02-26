@@ -4,7 +4,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Makes the content vertically centered */
+        height: 20vh; /* Makes the content vertically centered */
 }
 
 input {

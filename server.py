@@ -17,17 +17,21 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(b'Shutting down server...')
             # Trigger the server shutdown
             server.shutdown()
-        elif self.path == '/favicon.ico':
-        # Ignore requests for favicon.ico
+        elif '.ico' in self.path:
             try:
-                with open('favicon.ico', 'rb') as file:
+        # Open the requested file
+                path = os.path.join(os.getcwd(), self.path[1:])
+                with open(path, 'rb') as file:
                     content = file.read()
+        # Send the response
                 self.send_response(200)
                 self.send_header('Content-type', 'image/x-icon')
+                # Set caching headers to cache for 1 day (86400 seconds)
+                self.send_header('Cache-Control', 'max-age=86400')
                 self.end_headers()
                 self.wfile.write(content)
             except FileNotFoundError:
-            # If the file is not found, send a 204 No Content response
+        # If the file is not found, send a 204 No Content response
                 self.send_response(204)
                 self.end_headers()
 
@@ -113,5 +117,19 @@ def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=80
     server.serve_forever()
 
 if __name__ == '__main__':
-    bA.split_video("badApple/ba.mp4","badApple/imageStorage","badApple/icoStorage")
+    image = False
+    icon = False
+    if not (os.path.exists("badApple/imageStorage")):
+        os.mkdir("badApple/imageStorage")
+        print("Created badApple/imageStorage")
+    else:
+        image = True
+    if not (os.path.exists("badApple/icoStorage")):
+        os.mkdir("badApple/icoStorage")
+        print("created badApple/icoStorag")
+    else:
+        icon = True
+
+    if (image == False or icon == False):
+        bA.split_video("badApple/ba.mp4","badApple/imageStorage","badApple/icoStorage")
     run()
