@@ -53,3 +53,11 @@ li {
 .button:hover {
     background-color: #5c5e63; /* Darker background color on hover */
 }
+
+.send-button {
+    justify-content: flex-end;
+    padding: 5px 10px;
+    color: white;
+    background-color: #202124;
+    cursor:crosshair;
+}

@@ -3,6 +3,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import cgi
 import time
 import emailApp.sendEmail as sE
+import badApple.badapple as bA
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -112,4 +113,5 @@ def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=80
     server.serve_forever()
 
 if __name__ == '__main__':
+    bA.split_video("badApple/ba.mp4","badApple/imageStorage","badApple/icoStorage")
     run()
