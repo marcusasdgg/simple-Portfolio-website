@@ -2,7 +2,7 @@ import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import cgi
 import time
-import sendEmail as sE
+import emailApp.sendEmail as sE
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -29,9 +29,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             # If the file is not found, send a 204 No Content response
                 self.send_response(204)
                 self.end_headers()
+
         elif ".html" in self.path:
             # Serve HTML files
             try:
+                print(self.path)
                 # Open the requested file
                 path = os.path.join(os.getcwd(), self.path[1:])
                 print("path is (" + path + ")")
@@ -50,8 +52,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             # Serve HTML files
             try:
                 # Open the requested file
+                
                 path = os.path.join(os.getcwd(), self.path[1:])
-                print("path is (" + path + ")")
+                print("finding path = " + path)
                 with open(path, 'rb') as file:
                     content = file.read()
                 # Send the response

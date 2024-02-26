@@ -1,0 +1,55 @@
+h1 {
+    font-family: Arial, sans-serif; /* Arial font with fallback to a generic sans-serif font */
+    color:white;
+}
+body {
+    background-color:#202124;
+}
+
+p {
+    color:white;
+}
+
+h2 {
+    color:white;
+}
+
+a {
+    color:white;
+}
+
+li {
+    color: #fff8ea;
+}
+
+.montserrat{
+    font-family: 'Montserrat', sans-serif;
+  }
+
+.button-row {
+    display: flex; /* Use flexbox for layout */
+    justify-content: flex-start; /* Align items with space between */
+    padding-left: 20;
+    padding-right: 20;
+    padding-top: 5;
+    padding-bottom: 5;
+    border-radius: 5px;
+    
+}
+
+/* Style for the buttons */
+.button {
+    padding: 5px 10px; /* Add padding to the buttons */ /* Button background color */
+    color: white; /* Button text color */
+    background-color: #202124;
+    border: none; /* Remove button borders */
+    border-radius: 1px; /* Add border radius for rounded corners */
+    cursor: pointer;
+    margin-right: 5px;
+     /* Change cursor to pointer on hover */
+}
+
+/* Style for the buttons on hover */
+.button:hover {
+    background-color: #5c5e63; /* Darker background color on hover */
+}
