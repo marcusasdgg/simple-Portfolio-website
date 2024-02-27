@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Rawr Uwu Owo</title>
+    <link rel="stylesheet" href="badCalc.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script>
+        function stupidFunction()
+        {
+            var num1 = document.getElementById('number1').value;
+            var num2 = document.getElementById('number2').value;
+            document.getElementById('number3').value = num1 + num2;
+        }
+    </script>
+</head>
+<body>
+    <h1>Perfectly werking addition calculatorz</h1>
+    <div class = 'stupid'>
+        <input type="text" id="number1" name="Number">
+        <h1> + </h1>
+        <input type="text" id="number2" name="Number">
+        <h1> = </h1>
+        <input type="text" id="number3" name="Number">
+        <button onclick = "stupidFunction()"> Submit</button>   
+    </div>
+    <p style = "text-align: center;">This page is serves as an introduction of javascript into html, <br> albeit in a dumb and amusing manner.</p>
+
+</body>

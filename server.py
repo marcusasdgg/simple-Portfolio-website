@@ -34,7 +34,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         # If the file is not found, send a 204 No Content response
                 self.send_response(204)
                 self.end_headers()
-
         elif ".html" in self.path:
             # Serve HTML files
             try:
@@ -72,7 +71,32 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(302)
                     self.send_header('Location', '/secret.html')
                     self.end_headers()
-                    
+        elif ".mp3" in self.path:
+            try:
+                # Open the MP3 file
+                path = os.path.join(os.getcwd(), self.path[1:])
+                with open(path, 'rb') as file:
+                    content = file.read()
+
+                # Send the response
+                self.send_response(200)
+                self.send_header('Content-type', 'audio/mpeg')  # Set the content type
+                self.end_headers()
+                self.wfile.write(content)
+            except FileNotFoundError:
+                # If the file is not found, send a 404 error
+                self.send_response(204) 
+        elif ".png" in self.path:
+            try:
+                with open(self.path[1:], 'rb') as file:
+                    content = file.read()
+                # Send the response with content type 'image/png'
+                self.send_response(200)
+                self.send_header('Content-type', 'image/png')
+                self.end_headers()
+                self.wfile.write(content)
+            except FileNotFoundError:
+                self.send_error(204)
     def do_POST(self):
         content_type = self.headers['Content-Type']
         content_length = int(self.headers['Content-Length'])

@@ -1,0 +1,13 @@
+.stupid {
+    
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh; /* Makes the content vertically centered */
+}
+
+input {
+    margin-left: 10px;
+    margin-right: 10px;
+}
