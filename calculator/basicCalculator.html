@@ -7,31 +7,98 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0", charset="UTF-8">
         <title>Calculator App</title>
+        <script>
+            var operationString = '';
+            var ifBracket = 0;
+
+            function onClickNumber(number)
+            {
+                var currentString = document.getElementsByTagName('h1')[1];
+                currentString.textContent += number;
+                operationString += number;
+            }
+            function onClickOperation(operator)
+            {
+                var output = operator;
+                var realOutput;
+                if(operator === '()' && ifBracket === 0)
+                {
+                    ifBracket = 1;
+                    output = '(';
+                    realOutput = '(';
+                } else if (operator === '()' && ifBracket === 1) {
+                    
+                    ifBracket = 0;
+                    output = ')';
+                    realOutput = ')';
+                }
+                
+                if (operator == ' ÷ ')
+                {
+                    console.log("divided detected.")
+                    realOutput = '/';
+                } else if (operator == ' x ')
+                {
+                    console.log("multiply detected.")
+                    realOutput = '*';
+                } else {
+                    realOutput = output;
+                }
+                
+                var currentString = document.getElementsByTagName('h1')[1];
+                operationString += realOutput;
+                console.log("operation string = "+operationString);
+                currentString.textContent += output;
+            }
+            function onClickDelete() {
+                var currentString = document.getElementsByTagName('h1')[1];
+                var lastChar = currentString.textContent[currentString.textContent.length - 1];
+                console.log(lastChar);
+                currentString.textContent = currentString.textContent.substring(0, currentString.textContent.length - 1);
+                var newLastChar = currentString.textContent[currentString.textContent.length - 1];
+                operationString = operationString.substring(0,operationString.length-1);
+                if (lastChar === ')') {
+                    ifBracket++;
+                } else if (lastChar === '(') {
+                    ifBracket--;
+                }
+            }
+            function evaluateString()
+            {
+                console.log("this is the operation string: "+operationString);
+                var currentString = document.getElementsByTagName('h1')[1];
+                currentString.textContent = eval(operationString);
+                operationString = currentString.textContent;
+            }
+        </script>
     </head>
     <body>
         <button class="homeButton" onclick="window.location.href = 'suite.html'"><i class="material-symbols-outlined">home</i><p class='homeText'>Go Home</p></button>
         <div class="calc">
             <h1 class="title roboto-thin">Basic Calculator</h1>
-            <div class='calcDisplay'><h1 class ='dynamicDisplay'></h1></div>
-            <button class="roboto-thin deleteButton"><i class="material-symbols-outlined bigIcon">backspace</i></button>
+            <div class='calcDisplay'><h1 class ='dynamicDisplay roboto-thin'></h1></div>
+            <button class="roboto-thin deleteButton" onclick="onClickDelete()"><i class="material-symbols-outlined bigIcon">backspace</i></button>
             <div class="buttonGrid">
-                <button class="buttonElement roboto-thin"> Clear </button>
-                <button class="buttonElement roboto-thin"> () </button>
-                <button class="buttonElement roboto-thin"> % </button>
-                <button class="buttonElement roboto-thin"> ÷ </button>
-                <button class="buttonElement roboto-thin"> 7 </button>
-                <button class="buttonElement roboto-thin"> 8 </button>
-                <button class="buttonElement roboto-thin"> 9 </button>
-                <button class="buttonElement roboto-thin"> x </button>
-                <button class="buttonElement roboto-thin"> 4 </button>
-                <button class="buttonElement roboto-thin"> 5 </button>
-                <button class="buttonElement roboto-thin"> 6 </button>
-                <button class="buttonElement roboto-thin"> - </button>
-                <button class="buttonElement roboto-thin"> 1 </button>
-                <button class="buttonElement roboto-thin"> 2 </button>
-                <button class="buttonElement roboto-thin"> 3 </button>
-                <button class="buttonElement roboto-thin"> + </button>
+                <button class="buttonElement roboto-thin" onclick="onClickOperation('()')"> () </button>
+                <button class="buttonElement roboto-thin" onclick="onClickOperation(' % ')"> % </button>
+                <button class="buttonElement roboto-thin" onclick="onClickOperation(' ÷ ')"> ÷ </button>
+                <button class="buttonElement roboto-thin" onclick="onClickOperation(' x ')"> x </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(7)"> 7 </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(8)"> 8 </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(9)"> 9 </button>
+                <button class="buttonElement roboto-thin" onclick="onClickOperation(' - ')"> - </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(4)"> 4 </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(5)"> 5 </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(6)"> 6 </button>
+                <button class="buttonElement roboto-thin" onclick="onClickOperation(' + ')"> + </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(1)"> 1 </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(2)"> 2 </button>
+                <button class="buttonElement roboto-thin" onclick="onClickNumber(3)"> 3 </button>
             </div>
+            <button class="equals roboto-thin" onclick="evaluateString()"> = </button>
+            <button class="zero roboto-thin" onclick="onClickNumber(0)"> 0 </button>
+            <button class="dot roboto-thin" onclick="onClickNumber('.')"> . </button>
+                
         </div>
     </body>
 </html>

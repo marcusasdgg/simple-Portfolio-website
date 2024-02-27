@@ -8,7 +8,7 @@ body {
 .calc {
     position: relative;
     margin: 30px auto;
-    background-color: rgb(34, 43, 43);
+    background-color: rgb(57, 71, 71);
     background-size: cover;
     background-position: center;
     width: 600px;
@@ -44,13 +44,14 @@ body {
     right: 20px;
     width: auto;
     height: auto;
-    bottom: 20px;
-    background-color: rgb(34, 43, 43);
+    bottom: 150px;
+    background-color: rgb(57, 71, 71);
     border-radius: 10px;
 }
 
 .buttonElement {
-    color: blue;
+    color: rgb(21, 31, 31);
+    font-size: 80px;
     border-radius: 8px;
 }
 
@@ -68,7 +69,7 @@ body {
     left: auto;
     right: 25px;
     top: 235px;
-    background-color: rgb(34, 43, 43);
+    background-color: rgb(57, 71, 71);
   }
 
   .material-symbols-outlined {
@@ -102,5 +103,39 @@ body {
 }
 
 .dynamicDisplay {
-    justify-content: center;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+.equals {
+    font-size: 80px;
+    color: rgb(21, 31, 31);
+    position: absolute;
+    left: 444px;
+    top: 717px;
+    width: 136px;
+    height: 273px;
+    border-radius: 8px;
+}
+.zero {
+    font-size: 80px;
+    color: rgb(21, 31, 31);
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    height: 135px;
+    width: 136px;
+    border-radius: 8px;
+}
+
+.dot {
+    font-size: 80px;
+    color: rgb(21, 31, 31);
+    position: absolute;
+    bottom: 10px;
+    left: 161px;
+    height: 135px;
+    width: 278px;
+    border-radius: 8px;
 }
