@@ -1,9 +1,11 @@
 import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
-import cgi
 import time
 import emailApp.sendEmail as sE
 import badApple.badapple as bA
+import ssl
+import socket
+
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -132,13 +134,17 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             # Handle other types of POST requests
             pass
 
-
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=8000):
-    server_address = ('192.168.0.200', port)
-    global server
-    server = server_class(server_address, handler_class)
-    print(f'Server running at http://127.0.0.1:{port}/')
-    server.serve_forever()
+    server_address = ('192.168.0.200', 443)
+    httpd = server_class(server_address, handler_class)
+    # Create an SSL context
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    # Load the key and certificate files
+    ssl_context.load_cert_chain(keyfile="server.key", certfile="server.crt")
+    # Wrap the socket with SSL
+    httpd.socket = ssl_context.wrap_socket(httpd.socket, server_side=True)
+    print(f'Server running at https://192.168.0.200:{port}/')
+    httpd.serve_forever()
 
 if __name__ == '__main__':
     image = False
